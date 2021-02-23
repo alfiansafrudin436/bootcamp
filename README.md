@@ -10,7 +10,7 @@ dalam membangun aplikasi. Saya memiliki minat berkarir
 sebagai mobile apps developer dengan React Native.
 
 # KONTAK
-* Alamat : Teganing 2, Hargotirto, Kokap, Kulonprogo
+* Alamat : Teganing 2, Hargotirto, Kokap, Kulonprogo, Dareah Istimewa Yogyakarta
 * No HP  : +62 8222 582 9349
 * Email  : alfiansafrudin436@gmail.com
 
