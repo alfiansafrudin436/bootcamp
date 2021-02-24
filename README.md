@@ -1,6 +1,10 @@
 # PROFIL
 ## ALFIAN SAFRUDIN
+
 ## ALFIAN SAFRUDIN 2
+
+## ADE INDRA PRATAMA
+
 ## FRONTEND DEVELOPER
 
 # TENTANG SAYA
@@ -9,6 +13,11 @@ Teknologi Yogyakarta. Memiliki pengalaman menggunakan
 React Native dengan menerapkan API dan beberapa library
 dalam membangun aplikasi. Saya memiliki minat berkarir
 sebagai mobile apps developer dengan React Native.
+(Ade)
+Seorang fresh graduate jurusan Informatika Universitas
+Islam Indonesia. Memiliki pengalaman menggunakan Laravel
+dalam membangun aplikasi. Saya memiliki minat berkarir sebagai
+web atau mobile developer.
 
 Seorang fresh graduate jurusan Informatika Universitas
 Teknologi Yogyakarta. Memiliki pengalaman menggunakan
@@ -23,6 +32,11 @@ sebagai mobile apps developer dengan React Native.
 * Email  : alfiansafrudin436@gmail.com
 * Gitlab : gitlab.com/alfiansafrudin436
 * LinkedIn : linkedin.com/in/alfian-safrudin
+(Ade)
+* Alamat : Jl. Bener GG. Pandanwangi No. 7
+* No HP : 089668594838
+* Email : adeprathama@gmail.com
+* Gitlab : gitlab.com/adeindra6
 
 * Alamat : Teganing 2, Hargotirto, Kokap, Kulonprogo, Dareah Istimewa Yogyakarta
 * No HP  : +62 8222 582 9349
