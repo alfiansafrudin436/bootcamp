@@ -5,6 +5,7 @@
 
 ## ADE INDRA PRATAMA
 
+## Muhammad Irsyad Kamil
 ## FRONTEND DEVELOPER
 
 # TENTANG SAYA
@@ -109,3 +110,4 @@ sebagai mobile apps developer dengan React Native.
 * IPA (2013-2016)
 ### UNIVERSITAS TEKNOLOGI YOGYAKARTA
 * IPA (2016-2020)
+# Editet by Irsyad
