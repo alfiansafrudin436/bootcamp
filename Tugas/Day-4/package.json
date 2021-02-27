@@ -1,0 +1,16 @@
+{
+  "name": "Day-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "no-1.js",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
