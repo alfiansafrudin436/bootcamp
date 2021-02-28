@@ -1,10 +1,11 @@
 {
   "name": "Try-out",
   "version": "1.0.0",
-  "description": "",
   "main": "tryout-1.js",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "request": "^2.88.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -12,5 +13,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

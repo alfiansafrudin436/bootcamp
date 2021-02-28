@@ -23,3 +23,9 @@
 [Sun, 28 Feb 2021 00:58:45 GMT] Post Data https://httpbin.org/post
 [Sun, 28 Feb 2021 00:58:46 GMT] Put Data https://httpbin.org/put
 [Sun, 28 Feb 2021 00:58:48 GMT] Patch Data https://httpbin.org/patch
+[Sun, 28 Feb 2021 16:16:34 GMT] Get Data from https://httpbin.org/get
+[Sun, 28 Feb 2021 16:16:35 GMT] Delete Data https://httpbin.org/delete
+[Sun, 28 Feb 2021 16:16:35 GMT] Crawling Data dari https://www.cgv.id/en/movies/info/21002000
+[Sun, 28 Feb 2021 16:16:36 GMT] Post Data https://httpbin.org/post
+[Sun, 28 Feb 2021 16:16:37 GMT] Put Data https://httpbin.org/put
+[Sun, 28 Feb 2021 16:16:38 GMT] Patch Data https://httpbin.org/patch
