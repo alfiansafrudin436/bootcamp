@@ -1,0 +1,13 @@
+{
+  "name": "todoapps",
+  "version": "1.0.0",
+  "description": "All u want todo are listed here",
+  "main": "Day-6.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
