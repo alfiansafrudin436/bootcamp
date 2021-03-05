@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Color from '../../components/Color'
 import {Header,Input, Title, Card,CardCompleted} from '../../components/Reusable'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -26,7 +26,6 @@ const Home = () => {
             })
         ])
     }
-
     const onDelete=(id)=>{
         setTodo(
             todo.filter((e)=>{
@@ -39,6 +38,12 @@ const Home = () => {
     return (
         <View style={styles.container}>
             <Header title="DAILIST"/>
+            {todo==''?
+            <View style={{flex:1, justifyContent:'center'}}>
+                <Image source={require('../../assets/images/box.png')}
+            style={styles.image}/>
+            </View>:
+            <View style={styles.containerCard}>
             <Title title="TODO"/>
             <ScrollView style={{flex:1}}>
             {todo.filter((e)=>e.status==false).map((m)=>{
@@ -58,7 +63,9 @@ const Home = () => {
                     onPressDelete={()=>onDelete(m.no)}/>
                     )
                 })}
-            </ScrollView>
+            </ScrollView>    
+            </View>}
+
 
             <View>
                 <Input
@@ -90,6 +97,14 @@ const styles = StyleSheet.create({
         borderRadius:60/2,
         alignItems:'center',
         justifyContent:'center',
+        alignSelf:'center'
+    },
+    containerCard:{
+       flex:1
+    },   
+    image:{
+        width:100,
+        height:100,
         alignSelf:'center'
     }
 })
