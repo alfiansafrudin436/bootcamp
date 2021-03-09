@@ -6,21 +6,22 @@ import Routes from '../../routes/routes'
 const Profile = (props) => {
     const [active, setActive]=useState(false)
     const [currentScreen, setCurrentScreen]=useState('Profile')
-    const [fData,setfData]=useState()
-    getData = async () => {
+    const [fData,setfData]=useState([])
+    const getData = async () => {
         try {
             const data=await AsyncStorage.getItem('fDataLogin')
             if(data!==null){
-                return data
+                setfData(JSON.parse(data))
             }
         } catch(e) {
             console.log(e)
         }
     }
-    useState(()=>{
-        setfData(getData())
-        console.log(fData)
-    })
+    getData()
+    const onLogout=()=>{
+        AsyncStorage.removeItem('fDataLogin')
+        setCurrentScreen('Login')
+    }
     return (
     <View style={styles.container}>
         {currentScreen=="Profile"?
@@ -33,7 +34,7 @@ const Profile = (props) => {
             }}> 
                 <CustomHeader title="Profile" 
                 navigationTitle="Log out"
-                // onPress={()=>navigation.navigate("Login")}
+                onPress={()=>onLogout()}
                 cStyleNav={{color:CustomColor.white}} 
                 cStyleTitle={{color:CustomColor.white}}
                 source={{uri:`${fData.photo}`}}
@@ -41,19 +42,19 @@ const Profile = (props) => {
                 />
             </View>
             <View style={{marginTop:80, alignItems:'center'}}>
-                <Text style={styles.name}>{fData.firstName}</Text>
-                <Text style={styles.jobs}>{fData.jobs}</Text>
+                <Text style={styles.name}>{fData.firstName==''?'First Name Empty':fData.firstName}</Text>
+                <Text style={styles.jobs}>{fData.jobs==''?'Jobs Empty':fData.jobs}</Text>
             </View>
             <View style={{marginTop:'20%'}}>
                 <CustomInput
                 text="Slogan"
                 editable={false}
-                value={fData.slogan}
+                value={fData.slogan==''?'Slogan Empty':fData.slogan}
                 placeholder="Slogan"/>
                 <CustomInput
                 text="Jobs"
                 editable={false}
-                value={fData.jobs}
+                value={fData.jobs==''?'Jobs Empty':fData.jobs}
                 placeholder="Jobs"/>
 
             </View>
@@ -65,6 +66,8 @@ const Profile = (props) => {
                 }
             </View>
         </View>
+        :currentScreen=='Login'?
+        <Routes screen="Login"/>
         :
         <Routes screen="Edit Profile"/>
         }

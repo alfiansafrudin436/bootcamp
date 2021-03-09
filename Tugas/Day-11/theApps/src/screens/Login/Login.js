@@ -12,54 +12,46 @@ import Routes from '../../routes/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Login = (props) => {
   const [active, setActive] = useState(false);
-  const [email, setEmail] = useState('alfian@gmail.com');
-  const [password, setPassword] = useState('alfian');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [currentScreen, setCurrentScreen] = useState('Login');
-  const [fDataRegister, setfDataRegister] = useState([]);
 
-  const getData = async () => {
+  const onSignIn = async () => {
     try {
       const dataUser = await AsyncStorage.getItem('fDataRegister');
       if (dataUser !== null) {
-        return setfDataRegister(JSON.parse(dataUser));
+        return verifyUser(dataUser);
       }
     } catch (e) {
       console.log(e);
     }
   };
-
-  const onSignIn = () => {
+  const verifyUser = (dataUser) => {
+    console.log(dataUser)
+    dataUser=JSON.parse(dataUser)
     setActive(true);
-    if (getData()) {
-        // console.log(getData())
         setTimeout(() => {
-          try {
-            const data = [fDataRegister].find(
-              (f) => f.email == email && f.password == password,
-            );
-            if (data) {
+            if (email==dataUser.email && password==dataUser.password) {
               const fData=({
-                firstName: data.first_name,
-                lastName: data.last_name,
-                slogan: data.slogan,
-                jobs: data.jobs,
-                photo: data.photo,
+                firstName: dataUser.first_name,
+                lastName: dataUser.last_name,
+                slogan: dataUser.slogan,
+                jobs: dataUser.jobs,
+                photo: dataUser.photo,
               });
               AsyncStorage.setItem('fDataLogin', JSON.stringify(fData));
               setCurrentScreen('Profile');
               setActive(false);
-            } else {
-              alert('Username atau Password Salah');
+            } else if(email==''||password==''){
+              alert('Please Fill Email and Password');
               setActive(false);
-            //   setEmail('');
-            //   setPassword('');
+            }else {
+              alert('Email and Password didnt Correct');
+              setActive(false);
+              setEmail('');
+              setPassword('');
             }
-          } catch {}
         }, 2000);
-    }else{
-        alert('Username atau Password Salah');
-        setActive(false);
-    }
   };
   return (
     <View style={styles.container}>

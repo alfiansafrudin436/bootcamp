@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import {CustomBtn,CustomBtnLoading, CustomColor, CustomInput, CustomHeader, CustomQuestion} from '../../../src/components/Reusable'
@@ -12,6 +13,22 @@ const EditProfile = ({navigation}) => {
     const [blur, setBlur]=useState(true)
     const [currentScreen, setCurrentScreen]=useState('Edit Profile')
 
+    const onSave=()=>{
+        let fData={
+            firstName: firstName,
+            lastName: lastName,
+            slogan: slogan,
+            jobs: jobs,
+        }
+        if(firstName, lastName, email, jobs, slogan ==''){
+            alert('Plase Fill All Empty Data')
+        }
+        else{
+            AsyncStorage.mergeItem('fDataLogin',(JSON.stringify(fData)))
+            alert('Data Saved')
+            setCurrentScreen('Profile')
+        }
+    }
     return (
         <View style={styles.container}>
         {currentScreen=="Edit Profile"?
@@ -58,7 +75,7 @@ const EditProfile = ({navigation}) => {
                 {active?
                 <CustomBtnLoading/>
                 :
-                <CustomBtn title="Update Data" onPress={()=>onSignUp()}/>
+                <CustomBtn title="Update Data" onPress={()=>onSave()}/>
                 }
             </View>
         </View>
