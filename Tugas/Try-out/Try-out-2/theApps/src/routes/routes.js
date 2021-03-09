@@ -27,7 +27,7 @@ const Routes = (props) => {
      if(props.screen=="Login"){
         currentScreen=<Login/>
     }else if(props.screen=="Profile"){
-        currentScreen=<Profile/>
+        currentScreen=<Profile data={props.data}/>
     }else if(props.screen=="Register"){
         currentScreen=<Register/>
     }else if(props.screen=="Edit Profile"){

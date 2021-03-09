@@ -3,24 +3,26 @@ import { StyleSheet, Text, View } from 'react-native'
 import {CustomBtn, CustomColor, CustomInput, CustomHeader, CustomQuestion, CustomBtnLoading} from '../../../src/components/Reusable'
 import DataUser from '../../../Data.json'
 import Routes from '../../routes/routes'
-const Login = ({navigation}) => {
+const Login = (props) => {
     const [active, setActive]=useState(false)
     const [email, setEmail]=useState('smatyashev1@reddit.com')
     const [password, setPassword]=useState('KTDMBhl9Kx')
     const [currentScreen, setCurrentScreen]=useState('Login')
+    const [data,setData]=useState()
     const onSignIn=()=>{
             setActive(true)
             setTimeout(()=>{
                 const fData = DataUser.find((f)=> f.email==email && f.password==password)
                 console.log(fData)
                 if(fData){
-                    // navigation.navigate('Profile',{
-                    //     firsName:fData.first_name,
-                    //     lastName:fData.last_name,
-                    //     slogan:fData.slogan,
-                    //     jobs:fData.jobs,
-                    //     photo:fData.photo,
-                    // })
+                    setData({
+                        firstName:fData.first_name,
+                        lastName:fData.last_name,
+                        slogan:fData.slogan,
+                        jobs:fData.jobs,
+                        photo:fData.photo,
+                    })
+
                     setCurrentScreen('Profile')
                     setActive(false)
                 }else{
@@ -58,7 +60,7 @@ const Login = ({navigation}) => {
                 <CustomQuestion title="Forgot your password ?"/>
             </View>
             :currentScreen=="Profile"?
-            <Routes screen="Profile"/>
+            <Routes screen="Profile" data={data} />
             : 
             <Routes screen="Register"/>
             }

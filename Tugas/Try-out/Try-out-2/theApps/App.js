@@ -5,6 +5,9 @@ import Routes from './src/routes/routes'
 
 
 const App = () => {
+  // STATE IS LOGIN
+  // STATE DATA YANG DIPAKAI SECARA GLOBAL
+  
   return (
     <Routes/>
   )
