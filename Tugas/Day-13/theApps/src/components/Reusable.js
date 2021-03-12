@@ -69,6 +69,7 @@ const CustomInput = (props) => {
         value={props.value}
         editable={props.editable}
         onChangeText={props.onChangeText}
+        onChange={(event) => props.onChange(props.formKey, event.nativeEvent.text)}
         placeholder={props.placeholder}
         style={[styles.input,props.style]}></TextInput>
     </View>

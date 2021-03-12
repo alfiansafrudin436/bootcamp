@@ -12,13 +12,15 @@ import Routes from '../../../App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dataUser from '../../../Data.json';
 import {validateEmail, validatePassword} from '../../Utils/Validasi';
+import useForm from '../../lib/useForm';
 const Register = ({navigation}) => {
   const [active, setActive] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [currentScreen, setCurrentScreen] = useState('Register');
-
+  const [values, handleChangeValues] = useForm({
+    name: '',
+    email: '',
+    password: '',
+  });
   // const getData=()=>{
   //   try {
   //     const dataUser = await AsyncStorage.getItem('fDataRegister');
@@ -29,18 +31,18 @@ const Register = ({navigation}) => {
   //     console.log(e);
   //   }
   // };
-  
+
   const onSignUp = async () => {
-    if ((name, email, password == '')) {
+    if ((values.name, values.email, values.password == '')) {
       Alert.alert('Input Required', 'Please Fill an Empty Input');
-    } else if (!validateEmail(email)) {
+    } else if (!validateEmail(values.email)) {
       Alert.alert('Invalid Email', 'You entered invalid email');
-    } else if (validatePassword(password) < 6) {
+    } else if (validatePassword(values.password) < 6) {
       Alert.alert('Invalid Password', '6 Character of Password Required');
     } else {
       setActive(true);
       setTimeout(() => {
-        const searchData = dataUser.find((f) => f.email == email);
+        const searchData = dataUser.find((f) => f.email == values.email);
         console.log(searchData);
         if (searchData) {
           alert('Email Sudah Terdaftar');
@@ -79,18 +81,21 @@ const Register = ({navigation}) => {
           />
           <View style={{marginTop: '20%'}}>
             <CustomInput
-              onChangeText={(value) => setName(value)}
-              value={name}
+              formKey="name"
+              onChange={handleChangeValues}
+              value={values.name}
               placeholder="Name"
             />
             <CustomInput
-              onChangeText={(value) => setEmail(value)}
-              value={email}
+              formKey="email"
+              onChange={handleChangeValues}
+              value={values.email}
               placeholder="Email"
             />
             <CustomInput
-              onChangeText={(value) => setPassword(value)}
-              value={password}
+              formKey="password"
+              onChange={handleChangeValues}
+              value={values.password}
               placeholder="Password"
             />
           </View>
