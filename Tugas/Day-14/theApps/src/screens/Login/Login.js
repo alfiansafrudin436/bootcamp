@@ -52,7 +52,7 @@ const Login = ({navigation}) => {
           photo: dataUser.photo,
         };
         AsyncStorage.setItem('fDataLogin', JSON.stringify(fData));
-        navigation.navigate('Profile')
+        navigation.navigate('Tabs')
         setActive(false);
       } else {
         alert('Email and Password didnt Correct');

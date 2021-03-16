@@ -45,11 +45,6 @@ const StackList = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Tabs"
-          component={BottomTabs}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="Landingpage"
           component={Landingpage}
           options={{headerShown: false}}
@@ -57,6 +52,11 @@ const StackList = () => {
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Tabs"
+          component={BottomTabs}
           options={{headerShown: false}}
         />
         <Stack.Screen
