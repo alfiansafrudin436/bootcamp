@@ -8,7 +8,7 @@ const Landingpage = ({navigation}) => {
   const getData = async () => {
     try {
       const data = await AsyncStorage.getItem('fDataLogin');
-      if (data !== null) {
+      if (data == null) {
         navigation.navigate('Login')
       } else {
         navigation.navigate('Tabs')
