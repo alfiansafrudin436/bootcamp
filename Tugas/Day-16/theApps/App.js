@@ -37,7 +37,18 @@ const BottomTabs = () => {
           title: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="articles" size={25} focused={focused} />
+            <Icon name="book" size={25} focused={focused} />
+          ),
+        }}
+      />
+        <Tabs.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: '',
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <Icon name="user" size={25} focused={focused} />
           ),
         }}
       />
