@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {CustomColor, CustomHeader, Loader} from '../../components/Reusable';
 import ProductProvider, {useProduct} from '@context/ProductProvider';
-import {useUser} from '../../context/UserProvider';
+import {useUser} from '@context/UserProvider';
 
 const List = ({navigation}) => {
   const {product, err, getData} = useProduct();
-  const {
+  const {isLoading,
     data: {user},
   } = useUser();
   useEffect(() => {
@@ -45,7 +45,7 @@ const List = ({navigation}) => {
         cStyleTitle={{color: CustomColor.white}}
         title="Products"
       />
-      {product == null ? (
+      {isLoading? (
         <Loader styleLoader={{top: '50%'}} size={30} title="Load Users" />
       ) : (
         <FlatList

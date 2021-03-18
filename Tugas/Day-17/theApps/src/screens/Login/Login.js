@@ -13,24 +13,18 @@ import useForm from '@lib/useForm';
 import {validatePassword} from '@utils/Validasi';
 
 const Login = ({navigation}) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const {login} = useUser();
+  const {login, isLoading} = useUser();
   const [values, handleChangeValues] = useForm({
     username: 'alfian',
     password: 'alfian',
   });
-
   const verifyUser = () => {
     if (validatePassword(values.password) < 6) {
       Alert.alert('Invalid Password', '6 Character of Password Required');
     } else if (values.username == '' || values.password == '') {
       alert('Please Fill uUername and Password');
     } else {
-      setIsLoading(true);
-      setTimeout(() => {
-        login(values.username, values.password);
-        setIsLoading(false);
-      }, 2000);
+      login(values.username, values.password);
     }
   };
   return (

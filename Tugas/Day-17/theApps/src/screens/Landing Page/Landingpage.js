@@ -8,7 +8,7 @@ const Landingpage = ({navigation}) => {
   const {data: {isLogin}} = useUser();
   setTimeout(() => {
     isLogin ? navigation.navigate('Tabs') : navigation.navigate('Login');
-  }, 5000);
+  }, 3000);
   return (
     <View style={styles.container}>
       <View>

@@ -7,7 +7,7 @@ const RegisterContext = createContext();
 const RegisterProvider = ({children}) => {
   const [status, setStatus] = useState({});
   const [error, setError] = useState(null);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   const register = async (name, username, password, noHp, email) => {
     const dataUser = {
@@ -19,15 +19,18 @@ const RegisterProvider = ({children}) => {
         email: email,
       },
     };
+    setIsloading(true);
     await axios
       .post(`${api}/api/v1/auth/signup`, dataUser)
       .then((res) => {
         console.log(res);
         setStatus(res.data.data.status);
+        setIsloading(false);
       })
       .catch((err) => {
         setError(err.response.data.message);
         console.log({err});
+        setIsloading(false);
       });
   };
   const value = {
