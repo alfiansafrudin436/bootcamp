@@ -14,6 +14,7 @@ import {validateEmail, validatePassword} from '../../Utils/Validasi';
 import useGetData from '../../lib/useGetData';
 import api from '../../api/api';
 import {Context} from '../../context/Context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [active, setActive] = useState(false);
@@ -37,6 +38,7 @@ const Login = ({navigation}) => {
       setTimeout(() => {
         let filter = response.find((f) => f.email == values.email);
         if (filter !== null) {
+          AsyncStorage.setItem('dataLogin', JSON.stringify(filter))
           navigation.navigate('Tabs');
           setActive(false);
         } else {

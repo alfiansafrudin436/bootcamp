@@ -4,6 +4,7 @@ import { CustomColor } from '../../components/Reusable';
 import {Context} from '../../context/Context';
 const Article = ({navigation}) => {
   const data = useContext(Context);
+  console.log(data)
   const renderItem = ({item}) => (
     <TouchableOpacity
       onPress={() =>

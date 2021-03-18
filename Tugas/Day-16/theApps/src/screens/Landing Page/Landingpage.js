@@ -6,7 +6,7 @@ import { CustomColor } from '../../components/Reusable';
 const Landingpage = ({navigation}) => {
   const getData = async () => {
     try {
-      const data = await AsyncStorage.getItem('fDataLogin');
+      const data = await AsyncStorage.getItem('dataLogin');
       if (data == null) {
         navigation.navigate('Login');
       } else {

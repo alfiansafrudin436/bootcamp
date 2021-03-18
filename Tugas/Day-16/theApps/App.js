@@ -37,18 +37,7 @@ const BottomTabs = () => {
           title: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="book" size={25} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: '',
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
-            <Icon name="user" size={25} focused={focused} />
+            <Icon name="articles" size={25} focused={focused} />
           ),
         }}
       />
@@ -93,12 +82,11 @@ const StackList = () => {
   );
 };
 const Routes = () => {
-  const [sign, setSign] = useState(false);
   return (
     <NavigationContainer>
-      <Context.Provider value={sign}>
-        <StackList />
-      </Context.Provider>
+      {/* <Context.Provider value={sign}> */}
+      <StackList />
+      {/* </Context.Provider> */}
     </NavigationContainer>
   );
 };

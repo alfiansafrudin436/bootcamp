@@ -11,8 +11,6 @@ const MyArticle = () => {
     url: `${api}posts`,
     method: `get`,
   });
-  const dataIdContext = useContext(Context);
-  console.log('CONTEXT', dataIdContext);
   return (
     <View style={{flex: 1}}>
       <CustomHeader
