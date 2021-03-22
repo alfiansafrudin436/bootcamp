@@ -6,7 +6,7 @@ import {GraphProvider} from '../../config/apollo';
 import {QUERY_USERS} from '../../config/query/query'
 const List = ({navigation}) => {
   const {loading, data, error} = useQuery(QUERY_USERS);
-  console.log({data, loading, error});
+  console.log(data.task);
   console.log({QUERY_USERS})
   useEffect(() => {}, []);
 
@@ -40,9 +40,9 @@ const List = ({navigation}) => {
         <Loader styleLoader={{top: '50%'}} size={30} title="Load Users" />
       ) : (
         <FlatList
-          data={product.data}
+          data={data.task}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.userId.toString()}
         />
       )}
     </View>
