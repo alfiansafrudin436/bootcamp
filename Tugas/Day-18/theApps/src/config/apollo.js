@@ -4,7 +4,7 @@ import React from 'react';
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://localhost:8080/v1/graphql',
+    uri: 'http://172.18.0.1:8080/v1/graphql',
   }),
   cache: new InMemoryCache(),
 });

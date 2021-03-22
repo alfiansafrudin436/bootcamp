@@ -3,18 +3,7 @@ import React, {useEffect} from 'react';
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {CustomColor, CustomHeader, Loader} from '../../components/Reusable';
 import {GraphProvider} from '../../config/apollo';
-import {gql} from 'graphql-tag';
-const QUERY_USERS = gql`
-  query MyQuery {
-    task(where: {Users: {userId: {_eq: 1}}}) {
-      userId
-      taskStatus
-      taskName
-      taskExpired
-    }
-  }
-`;
-
+import {QUERY_USERS} from '../../config/query/query'
 const List = ({navigation}) => {
   const {loading, data, error} = useQuery(QUERY_USERS);
   console.log({data, loading, error});
@@ -26,7 +15,7 @@ const List = ({navigation}) => {
       <View style={{backgroundColor: CustomColor.green, marginBottom: 10}}>
         <Text style={styles.txtTitle}>{item.userName}</Text>
       </View>
-      <View style={styles.itemContainer}>
+      {/* <View style={styles.itemContainer}>
         <Image
           source={{
             uri: `${
@@ -37,7 +26,7 @@ const List = ({navigation}) => {
           }}
           style={{width: 60, height: 60}}
         />
-      </View>
+      </View> */}
     </View>
   );
   return (
@@ -47,7 +36,7 @@ const List = ({navigation}) => {
         cStyleTitle={{color: CustomColor.white}}
         title="Users"
       />
-      {/* {loading ? (
+      {loading ? (
         <Loader styleLoader={{top: '50%'}} size={30} title="Load Users" />
       ) : (
         <FlatList
@@ -55,7 +44,7 @@ const List = ({navigation}) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />
-      )} */}
+      )}
     </View>
   );
 };
