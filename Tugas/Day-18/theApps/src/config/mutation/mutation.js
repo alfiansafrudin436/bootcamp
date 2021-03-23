@@ -21,12 +21,19 @@ const ADD_TASK = gql`
 const DELETE_TASK = gql`
   mutation($taskId: Int) {
     delete_task_by_pk(taskId: $taksId) {
-        taskExpired
-        taskId
-        taskName
-        taskStatus
-        userId
-      }
+      taskExpired
+      taskId
+      taskName
+      taskStatus
+      userId
     }
+  }
 `;
-export {ADD_TASK,DELETE_TASK};
+const UPDATE_TASK = gql`
+mutation($taskId: Int) {
+  update_task_by_pk(pk_columns: {taskId: $taskId}) {
+    taskStatus
+  }
+}
+`;
+export {ADD_TASK, DELETE_TASK, UPDATE_TASK};

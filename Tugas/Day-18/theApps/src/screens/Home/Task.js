@@ -17,7 +17,11 @@ import {
 import {GraphProvider} from '../../config/apollo';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {QUERY_TASKS} from '../../config/query/query';
-import {ADD_TASK, DELETE_TASK} from '../../config/mutation/mutation';
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  UPDATE_TASK,
+} from '../../config/mutation/mutation';
 
 const List = (props) => {
   const {data, loading, error} = useQuery(QUERY_TASKS(props.id));
@@ -30,6 +34,11 @@ const List = (props) => {
     deleteTask,
     {data: dataMutDel, loading: loadingMutDel, error: errorMutDel},
   ] = useMutation(DELETE_TASK);
+
+  const [
+    updateTask,
+    {data: dataMutUp, loading: loadingMutUp, error: errorMutUp},
+  ] = useMutation(UPDATE_TASK);
 
   const [tName, setTName] = useState();
   const [exp, setExp] = useState();
@@ -61,12 +70,11 @@ const List = (props) => {
         </Text>
         <TouchableOpacity
           onPress={() =>
-            addNewTask({
+            updateTask({
               variables: {
-                taskExpired: exp.toString(),
-                taskName: tName,
-                userId: parseInt(props.id),
+                taskId: item.taskId,
               },
+              taskStatus: true,
             })
           }>
           <Icon name="check" size={20} color={CustomColor.green} />
@@ -75,7 +83,7 @@ const List = (props) => {
           onPress={() =>
             deleteTask({
               variables: {
-                taskId: item.taskId
+                taskId: item.taskId,
               },
             })
           }>
