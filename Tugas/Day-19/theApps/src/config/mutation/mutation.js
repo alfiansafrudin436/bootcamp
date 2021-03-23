@@ -19,14 +19,21 @@ const ADD_TASK = gql`
   }
 `;
 const DELETE_TASK = gql`
-  mutation($taskId: Int) {
-    delete_task_by_pk(taskId: $taksId) {
-        taskExpired
-        taskId
-        taskName
-        taskStatus
-        userId
-      }
+  mutation($taskId: Int!) {
+    delete_task_by_pk(taskId: $taskId) {
+      taskExpired
+      taskId
+      taskName
+      taskStatus
+      userId
     }
+  }
 `;
-export {ADD_TASK,DELETE_TASK};
+const UPDATE_TASK = gql`
+  mutation($taskId: Int!) {
+    update_task_by_pk(pk_columns: {taskId: $taskId}, _set: {taskStatus: true}) {
+      taskStatus
+    }
+  }
+`;
+export {ADD_TASK, DELETE_TASK, UPDATE_TASK};

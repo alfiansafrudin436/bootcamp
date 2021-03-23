@@ -44,8 +44,8 @@ const List = (props) => {
   const [exp, setExp] = useState();
 
   useEffect(() => {
-    console.log({dataMutDel, loadingMutDel, errorMutDel});
-  }, [data, loading, error]);
+    console.log({errorMutDel});
+  }, [errorMutDel]);
 
   const addItem = () => {
     add ? setAdd(false) : setAdd(true);
@@ -74,19 +74,23 @@ const List = (props) => {
               variables: {
                 taskId: item.taskId,
               },
-              taskStatus: true,
             })
           }>
           <Icon name="check" size={20} color={CustomColor.green} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            deleteTask({
-              variables: {
-                taskId: item.taskId,
-              },
-            })
-          }>
+          onPress={() => {
+            console.log(item.taskId);
+            try {
+              deleteTask({
+                variables: {
+                  taskId: item.taskId,
+                },
+              });
+            } catch (err) {
+              console.log(err);
+            }
+          }}>
           <Icon name="trash" size={20} color="red" />
         </TouchableOpacity>
       </View>
