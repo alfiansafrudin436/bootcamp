@@ -81,19 +81,10 @@ const BottomTabs = () => {
 };
 
 const ListScreen = () => {
-  useEffect(() => {});
-  const {list, loading, isLogin} = useSelector(state => {
-    return {
-      list: state.auth.list,
-      loading: state.auth.loading,
-      isLogin: state.auth.isLogin,
-    };
-  });
-  console.log({isLogin});
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Splash"
           component={Splash}
           options={horizontalAnimation}
@@ -122,7 +113,7 @@ const ListScreen = () => {
           name="Register"
           component={Register}
           options={horizontalAnimation}
-        /> */}
+        />
         <Stack.Screen
           name="Tab"
           component={BottomTabs}

@@ -8,15 +8,15 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const getData = async () => {
     const rawDataUser = await AsyncStorage.getItem('user');
-    const dataUser =JSON.parse(rawDataUser)
+    const dataUser = JSON.parse(rawDataUser);
     if (dataUser) {
+      console.log(dataUser);
       setUser(dataUser);
-      setLoading(false);
+      setLoading(false)
     }
   };
   useEffect(() => {
     getData();
-    console.log(user);
   }, []);
 
   return (
@@ -25,7 +25,7 @@ const Profile = () => {
         <Text style={{fontSize: 28, fontWeight: 'bold'}}>Profile</Text>
       </View>
       {loading ? (
-        <>
+        <View style={{flex:1, justifyContent:'center'}}>
           <ActivityIndicator
             style={{alignSelf: 'center', justifyContent: 'center'}}
             size={30}
@@ -34,11 +34,13 @@ const Profile = () => {
           <Text style={{alignSelf: 'center', color: RColor.orange}}>
             Loading Profile
           </Text>
-        </>
+        </View>
       ) : (
         <View style={{marginTop: '50%', justifyContent: 'center'}}>
-          {/* <Text style={styles.txt}>{user.login.name}</Text>
-          <Text style={styles.txt}>{user.login.email}</Text> */}
+          <Text style={styles.txt}>{user.full_name}</Text>
+          <Text style={styles.txt}>{user.email}</Text>
+          <Text style={styles.txt}>{user.phone_number}</Text>
+
         </View>
       )}
     </View>
