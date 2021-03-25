@@ -7,7 +7,14 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {RColor, RTitleSlider, RTextInput, RButton, RQuestion,RButtonLoading} from '@reusable';
+import {
+  RColor,
+  RTitleSlider,
+  RTextInput,
+  RButton,
+  RQuestion,
+  RButtonLoading,
+} from '@reusable';
 import {useDispatch, useSelector} from 'react-redux';
 import login from '../../redux/Auth/actions';
 
@@ -37,22 +44,24 @@ const Login = ({navigation}) => {
             password,
           }),
         );
+        if (isLogin) {
+          navigation.navigate('Tab');
+        } else {
+          Alert.alert('Alert', `${error}`);
+        }
       }
     } catch (error) {
       Alert.alert('Alert', `${error}`);
     }
   };
-  if(isLogin){
-    navigation.navigate('Tab')
-  }
   return (
     <View style={styles.container}>
-      <View style={[styles.imgContainer, {height:height}]}>
+      <View style={[styles.imgContainer, {height: height}]}>
         <Image style={[styles.img]} source={require('../../img/4.png')} />
       </View>
       <RTitleSlider title="Login" />
       <ScrollView>
-        <View style={{flex:1}}>
+        <View style={{flex: 1}}>
           <RTextInput
             placeholder="Username"
             CStyle={styles.CStyleInput}
@@ -75,7 +84,7 @@ const Login = ({navigation}) => {
           />
           <RQuestion title="Forgot Password ? " />
           {loading ? (
-            <RButtonLoading/>
+            <RButtonLoading />
           ) : (
             <RButton title="Login" onPress={() => loginPress()} />
           )}
