@@ -47,13 +47,12 @@ const styles = StyleSheet.create({
   containerHeader: {
     marginTop: 30,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: '5%',
     marginRight: '5%',
   },
   containerHeaderTitle: {
-    flexDirection: 'row',
+    alignItems:'center',
     width: '100%',
     justifyContent: 'center',
   },

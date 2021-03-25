@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 import {RColor} from '@reusable';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -37,6 +37,9 @@ const Profile = () => {
         </View>
       ) : (
         <View style={{marginTop: '50%', justifyContent: 'center'}}>
+          <View style={{width:120, height:120, borderRadius:60, alignSelf:'center', borderColor:RColor.orange, borderWidth:4}}>
+            <Image style={{width:'100%', height:'100%', borderRadius:45}} source={require('../../img/9.png')}/>
+          </View>
           <Text style={styles.txt}>{user.full_name}</Text>
           <Text style={styles.txt}>{user.email}</Text>
           <Text style={styles.txt}>{user.phone_number}</Text>
