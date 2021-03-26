@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Splash,
   Left,
@@ -15,9 +15,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {Icon} from './src/components/index';
-import CreatePost from './src/screens/CreatePost/CreatePost';
 import {Provider, useSelector} from 'react-redux';
-import store from './src/redux/store';
+import {store, persistor} from './src/redux/index';
+import {PersistGate} from 'redux-persist/integration/react';
+import { View } from 'react-native';
+
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -41,8 +43,9 @@ const horizontalAnimation = {
 };
 
 const BottomTabs = () => {
+    
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator tabBarOptions={{style:{height:50, paddingTop:10, borderRadius:30, position:'absolute', bottom:10, marginLeft:'5%', marginRight:'5%'}}}>
       <Tabs.Screen
         name="Home"
         component={Home}
@@ -50,7 +53,7 @@ const BottomTabs = () => {
           title: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="home" size={25} focused={focused} />
+            <Icon name="home" title="Home" size={focused ? 20 : 28} focused={focused} />
           ),
         }}
       />
@@ -61,18 +64,7 @@ const BottomTabs = () => {
           title: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="user" size={25} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="Logout"
-        component={Logout}
-        options={{
-          title: '',
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
-            <Icon name="sign-out" size={25} focused={focused} />
+            <Icon name="user" title="Profile" size={focused ? 20: 28} focused={focused} />
           ),
         }}
       />
@@ -81,49 +73,69 @@ const BottomTabs = () => {
 };
 
 const ListScreen = () => {
+  const {isLogin} = useSelector(state => {
+    return {
+      isLogin: state.auth.isLogin,
+    };
+  });
+  useEffect(() => {
+    console.log({isLogin});
+  }, [isLogin]);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Left"
-          component={Left}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Mid"
-          component={Mid}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Right"
-          component={Right}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Tab"
-          component={BottomTabs}
-          options={horizontalAnimation}
-        />
-        <Stack.Screen
-          name="Detail"
-          component={Detail}
-          options={horizontalAnimation}
-        />
+        {isLogin ? (
+          <>
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Tab"
+              component={BottomTabs}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Detail"
+              component={Detail}
+              options={horizontalAnimation}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Left"
+              component={Left}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Mid"
+              component={Mid}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Right"
+              component={Right}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={horizontalAnimation}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={horizontalAnimation}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -131,7 +143,9 @@ const ListScreen = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <ListScreen />
+      <PersistGate persistor={persistor}>
+        <ListScreen />
+      </PersistGate>
     </Provider>
   );
 };

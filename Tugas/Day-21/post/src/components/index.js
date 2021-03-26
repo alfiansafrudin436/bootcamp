@@ -11,25 +11,56 @@ import CustomIcon from 'react-native-vector-icons/FontAwesome';
 import CIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const RColor = {
-  orange: '#E35734',
+  orange: '#DC7733',
+  lightOrange:'#F9E79F',
   blue: '#65AAEA',
   white: '#FFFF',
   green: '#5BA092',
   grey: '#BEBAB3',
   darkGrey: '#78746D',
-  lightGray:'#F8F2EE'
+  lightGray: '#F8F2EE',
 };
 
 const ACTIVE_TAB_COLOR = RColor.orange;
-const INACTIVE_TAB_COLOR = RColor.darkGrey;
-const Icon = ({name, focused, size, style}) => (
-  <CustomIcon
-    name={name}
-    size={size}
-    color={focused ? ACTIVE_TAB_COLOR : INACTIVE_TAB_COLOR}
-  />
+const INACTIVE_TAB_COLOR = RColor.grey;
+const Icon = ({name, focused, size, title}) => (
+  <View
+    style={{
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: focused ? RColor.lightOrange : null,
+      borderRadius: 25,
+      height: 40,
+      paddingLeft: 10,
+      paddingRight: 10,
+    }}>
+    <CustomIcon
+      name={name}
+      size={size}
+      color={focused ? ACTIVE_TAB_COLOR : INACTIVE_TAB_COLOR}
+    />
+    <Text
+      style={{
+        fontWeight: 'bold',
+        marginLeft: focused ? 5 : 0,
+        color: RColor.orange,
+      }}>
+      {focused ? title : ''}
+    </Text>
+  </View>
 );
-
+const RHeader = props => {
+  return (
+    <View style={styles.containerHeader}>
+      <View style={{position: 'absolute'}}>
+        <RIcon onPress={props.onPress} name="arrow-left" size={20} />
+      </View>
+      <View style={styles.containerHeaderTitle}>
+        <Text style={{fontSize: 28, fontWeight: 'bold'}}>{props.title}</Text>
+      </View>
+    </View>
+  );
+};
 const RLoader = props => {
   return (
     <View style={[{alignSelf: 'center'}, props.styleLoader]}>
@@ -136,13 +167,24 @@ const RIcon = props => {
 const RCategory = props => {
   return (
     <TouchableOpacity
-      style={{backgroundColor: RColor.blue, width: 54, height: 24,justifyContent:'center',
-      alignItems:'center', borderRadius:15, marginLeft:10, marginRight:10}}>
-      <Text style={{color: RColor.white, fontSize:12, fontStyle:'normal'}}>{props.title}</Text>
+      style={{
+        backgroundColor: RColor.blue,
+        width: 54,
+        height: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        marginLeft: 10,
+        marginRight: 10,
+      }}>
+      <Text style={{color: RColor.white, fontSize: 12, fontStyle: 'normal'}}>
+        {props.title}
+      </Text>
     </TouchableOpacity>
   );
 };
 export {
+  RHeader,
   RCategory,
   RButtonLoading,
   RLoader,
@@ -159,6 +201,19 @@ export {
 };
 
 const styles = StyleSheet.create({
+  // HEADER
+  containerHeader: {
+    marginTop: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: '5%',
+    marginRight: '5%',
+  },
+  containerHeaderTitle: {
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'center',
+  },
   // ICON
   iconContainer: {
     borderColor: RColor.grey,

@@ -4,7 +4,7 @@ import {RColor, RTitleSlider, RTextInput, RButton, RQuestion} from '@reusable';
 
 const Splash = ({navigation}) => {
   setTimeout(() => {
-    navigation.navigate('Left');
+    navigation.navigate('Tab');
   }, 3000);
 
   return (

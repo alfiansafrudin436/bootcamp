@@ -7,36 +7,38 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
-  const {list, loading, error} = useSelector(state => {
+  const {list,listProduct, loading, error} = useSelector(state => {
     return {
-      list: state.product.list,
+      listProduct: state.product.list,
+      list: state.auth.list,
       loading: state.product.loading,
       error: state.product.error,
     };
   });
+  
   useEffect(() => {
     dispatch(fetchProduct());
-    console.log(list);
+    console.log({list});
+    console.log({listProduct});
   }, []);
   const renderItem = ({item}) => (
     <TouchableOpacity
       style={styles.containerCard}
       onPress={() => {
-        navigation.navigate('Detail',{
-          name:item.name,
-          user:item.supplier.full_name,
-          phone:item.supplier.phone_number
+        navigation.navigate('Detail', {
+          name: item.name,
+          user: item.supplier.full_name,
+          phone: item.supplier.phone_number,
         });
       }}>
-      <View
-        style={{width: 343, height: 194, backgroundColor: RColor.lightGray}}>
+      <View style={styles.imgContainer}>
         <Image
           source={
             item.id % 2 == 0
               ? require('../../img/6.png')
               : require('../../img/7.png')
           }
-          style={{width: '100%', height: '100%'}}
+          style={{width: '100%', height: '100%', overflow: 'hidden'}}
         />
       </View>
       <View style={{paddingLeft: 20, paddingTop: 5}}>
@@ -44,7 +46,7 @@ const Home = ({navigation}) => {
           Rp. {item.price}
         </Text>
         <Text style={styles.txtTitle}>{item.name}</Text>
-        <Text style={[styles.txtsubTitle, {fontSize: 15}]}>
+        <Text style={[styles.txtsubTitle, {fontSize: 14, fontWeight:'600'}]}>
           Stock {item.stock}
         </Text>
       </View>
@@ -56,21 +58,16 @@ const Home = ({navigation}) => {
         <View>
           <Text>Hello, </Text>
           {/* {loading?<></>:list.name} */}
-          <Text style={{fontSize: 28, fontWeight: 'bold'}}>Namaku</Text>
+          <Text style={{fontSize: 28, fontWeight: 'bold'}}>
+            {list.full_name}
+          </Text>
         </View>
         <RIcon name="bell" size={20} />
       </View>
       <View>
         <RTextInput placeholder="Search here..." />
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginBottom: 12,
-          marginTop: 12,
-          marginLeft: '5%',
-          marginRight: '5%',
-        }}>
+      <View style={styles.category}>
         <Text>Category : </Text>
         <RCategory title="#CSS" />
         <RCategory title="#UX" />
@@ -81,7 +78,7 @@ const Home = ({navigation}) => {
         <RLoader styleLoader={{top: '35%'}} size={30} title="Load Users" />
       ) : (
         <FlatList
-          data={list.data}
+          data={listProduct.data}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
@@ -105,14 +102,26 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
     marginRight: '5%',
   },
+  category: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    marginTop: 12,
+    marginLeft: '5%',
+    marginRight: '5%',
+  },
   containerCard: {
     height: 297,
     borderRadius: 8,
-    marginBottom: 15,
+    marginBottom: 10,
     borderWidth: 1,
     backgroundColor: RColor.white,
     borderColor: RColor.grey,
     alignSelf: 'center',
+  },
+  imgContainer: {
+    width: 343,
+    height: 194,
+    backgroundColor: RColor.lightGray,
   },
   txtTitle: {
     fontSize: 24,

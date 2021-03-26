@@ -44,11 +44,6 @@ const Login = ({navigation}) => {
             password,
           }),
         );
-        if (isLogin) {
-          navigation.navigate('Tab');
-        } else {
-          Alert.alert('Alert', `${error}`);
-        }
       }
     } catch (error) {
       Alert.alert('Alert', `${error}`);
@@ -116,5 +111,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-

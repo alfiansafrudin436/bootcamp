@@ -27,9 +27,11 @@ export default loginAction = data => dispatch => {
       AsyncStorage.setItem('user', JSON.stringify(res.data.data));
       dispatch(setData(res.data.data));
       dispatch(setIsLogin(true));
+      console.log("WKWKWKWK");
+
     })
     .catch(err => {
-      // console.log({err});
+      console.log({err});
       dispatch(setError(err.response));
       dispatch(setIsLogin(false));
     })
